@@ -23,7 +23,8 @@ public partial class MainWindow : Window
     private readonly Triangle3 _t = new(new(100, 100, 100), new(100, 200, 100), new(200, 200, 100), new());
     private int _f;
     private Graphic _graphic;
-    private bool[,] _map;
+    // private bool[,] _map;
+    // private Point3[] _cube;
     public MainWindow()
     {
 
@@ -38,16 +39,14 @@ public partial class MainWindow : Window
     public void Tick(object? sender, EventArgs args)
     {
         _bitmap.Lock();
-        _graphic.Clear();
         var v = 160000 * Sin(_f / 200.0);
-        // _graphic.DrawTriangle((new Triangle3(new(100, 100, 1), new(100, 200, 1), new(200, 200, 1), Color.FromRgb(255, 255, 255)).GetProjection(new(0, 0, 1), 1)).WithColors(100, 100, 100), 100, 100, 100);
-        // _graphic.DrawJuliaSet(_f / 100);
         for (int y = 0; y < _bitmap.PixelWidth; y++)
         {
             for (int x = 0; x < _bitmap.PixelHeight; x++)
             {
                 if (!(Abs((((x - 400) ^ 2 + (y - 500) ^ 2) * ((x - 600) ^ 2 + (y - 500) ^ 2) - v)) < 5000))
                 {
+
                     var r = 255;
                     var g = 255;
                     var b = 255;
@@ -59,9 +58,8 @@ public partial class MainWindow : Window
                 }
             }
         }
-        this.Title = $"{_f}";
+        _f++;
         _bitmap.AddDirtyRect(new(0, 0, _bitmap.PixelWidth, _bitmap.PixelHeight));
         _bitmap.Unlock();
-        _f++;
     }
 }

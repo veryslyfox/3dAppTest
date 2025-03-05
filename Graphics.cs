@@ -149,6 +149,10 @@ struct Rectangle
         }
         return new Rectangle(x1, y1, x2, y2);
     }
+    public Point GetMidpoint()
+    {
+        return new((X1 + X2) / 2, (Y1 + Y2) / 2);
+    }
     public static bool operator ==(Rectangle left, Rectangle right)
     {
         return (left.X1 == right.X1) &
@@ -423,7 +427,6 @@ class Graphic
                         var ptr = column * 4 + StartPtr + Bitmap.BackBufferStride * row;
                         *(int*)ptr = (i << 16) | (i << 8) | i;
                     }
-                    MessageBox.Show("ah");
                     break;
                 }
             }
@@ -436,5 +439,26 @@ class Graphic
     public void Fill(byte r, byte g, byte b)
     {
         DrawRectangle(new Rectangle(0, 0, Bitmap.PixelWidth, Bitmap.PixelHeight), r, g, b);
+    }
+    public unsafe void DrawMandelbrotSet()
+    {
+        var a = new Complex(0, 0);
+        for (int column = 0; column < 1000; column++)
+        {
+            for (int row = 0; row < 1000; row++)
+            {
+                var c = new Complex(column / 500 - 1 / 1000, row / 500 - 1 / 1000);
+                for (int i = 0; i < 50; i++)
+                {
+                    a = a * a + c;
+                    if (a.Magnitude > 2)
+                    {
+                        var ptr = column * 4 + StartPtr + Bitmap.BackBufferStride * row;
+                        *(int*)ptr = ((i * 5) << 16) | ((i * 5) << 8) | (i * 5);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

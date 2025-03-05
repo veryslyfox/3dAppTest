@@ -18,3 +18,4 @@ C:\Users\Лисёнок\Documents\3dAppTest\obj\Debug\net8.0-windows\refint\3dAp
 C:\Users\Лисёнок\Documents\3dAppTest\obj\Debug\net8.0-windows\3dAppTest.pdb
 C:\Users\Лисёнок\Documents\3dAppTest\obj\Debug\net8.0-windows\3dAppTest.genruntimeconfig.cache
 C:\Users\Лисёнок\Documents\3dAppTest\obj\Debug\net8.0-windows\ref\3dAppTest.dll
+C:\Users\Лисёнок\Documents\3dAppTest\obj\Debug\net8.0-windows\3dAppTest.sourcelink.json
